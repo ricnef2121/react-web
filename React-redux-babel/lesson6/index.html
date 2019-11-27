@@ -23,8 +23,14 @@
     <div>
        
         <div id="app"></div>
+        <div id="app2"></div>
+        <div id="app3"></div>
     </div>
     <script  type="text/babel">
+
+//A component is basically a custom html element that we can use and reuse in our aplications
+
+
        // with style jsx
         const CUSTOMCOMPONENT = function () {
             const date = new Date();
@@ -39,7 +45,13 @@
             return <h1 className="header">New component this year is: {thisYear}</h1>;
         }
 
-        ReactDOM.render(<CUSTOMCOMPONENT1 />, document.getElementById('app'));
+        const CUSTOMCOMPONENT2 = function (props) {
+            return <h1 style={{color: props.color}}>using props</h1>;
+        }
+
+        ReactDOM.render(<CUSTOMCOMPONENT2 color="orange"/>, document.getElementById('app'));
+        ReactDOM.render(<CUSTOMCOMPONENT2 color="green"/>, document.getElementById('app2'));
+        ReactDOM.render(<CUSTOMCOMPONENT2 color="purple"/>, document.getElementById('app3'));
     </script>
 </body>
 
