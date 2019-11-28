@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Events</title>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js"></script>
+    <style>
+        .header {
+            font-size: 59px;
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+
+        <div id="app"></div>
+    </div>
+    <script type="text/babel">
+
+        //Events
+        class Counter extends React.Component {
+            render() {
+                return <h1> the counter component</h1>
+            }
+        }
+
+        const App = function () {
+            return <div>
+                <Counter />
+            </div>;
+
+        }
+
+        ReactDOM.render(<App />, document.getElementById('app'));
+
+    </script>
+</body>
+
+</html>
