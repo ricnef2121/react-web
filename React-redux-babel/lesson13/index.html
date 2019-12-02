@@ -31,23 +31,12 @@
 
         class Counter extends React.Component {
 
-            //now we create a constructor
-            /* inside of the constructor , 
-            it will be found the state of component.*/
             constructor() {
                 super();
 
                 this.state = {
                     count: 0
                 };
-                /*
-                bind es un metodo del objeto funcion,
-                se utiliza para manipular el valor contextual de this.
-                Cada ves que se crea una funcion y se ejecuta sobre ella "bind",
-                se puede acceder al valor de this dentro de la funcion tanto
-                como de sus parametro. Es decir nos permite sobreescribir sus propiedades,
-                los metodos nativos , ademas de poder clonar objetos.
-                */
 
                 this.handleSubtract = this.handleSubtract.bind(this);
                 this.handleAdd = this.handleAdd.bind(this);
@@ -69,8 +58,19 @@
 
 
             render() {
+                //traditional conditional rendered
+                let type = '';
+                if(this.state.count % 2 === 0){
+                    type='traditional condition'
+                }else{
+                    type=''
+                }
                 return <div>
+                    <h6>{type}</h6>
                     <h1> the counter component</h1>
+
+                    {/*now we create a conditional rendered with jsx*/}
+                    <h2>{this.state.count % 2 === 0  ? 'show conditional' : false} </h2>
 
                     <div>
                         <button onClick={this.handleSubtract}> - </button>
