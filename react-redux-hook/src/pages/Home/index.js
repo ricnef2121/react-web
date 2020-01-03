@@ -4,16 +4,20 @@ import { mergeClasses } from '@material-ui/styles';
 import styles from './style'
 import {MovieIcon} from '../../icons'
 
-export default () => {
-
+export default ({history}) => {
+    console.log(history)
     const [searchText,setSearchText] = useState('');
     const classes = styles();
     const handleSearchTextChnge = event => {
         setSearchText(event.target.value);
     };
 
-    const handleCleanTextClick=event=>{};
-    const handleSearchTextClick=event=>{};
+    const handleCleanTextClick=event=>{
+        setSearchText('')
+    };
+    const handleSearchTextClick=event=>{
+        history.push(`/results?movieName=${searchText}`)
+    };
 
     //console.log(searchText);
 
