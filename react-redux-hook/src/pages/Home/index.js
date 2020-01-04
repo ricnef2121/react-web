@@ -1,11 +1,11 @@
 import React ,{useState}from 'react';
 import {Container,Typography, Card,Grid,TextField,Button} from '@material-ui/core'
-import { mergeClasses } from '@material-ui/styles';
+//import { mergeClasses } from '@material-ui/styles';
 import styles from './style'
 import {MovieIcon} from '../../icons'
 
 export default ({history}) => {
-    console.log(history)
+    
     const [searchText,setSearchText] = useState('');
     const classes = styles();
     const handleSearchTextChnge = event => {
@@ -16,7 +16,11 @@ export default ({history}) => {
         setSearchText('')
     };
     const handleSearchTextClick=event=>{
-        history.push(`/results?movieName=${searchText}`)
+        //history.push(`/results?idSearch=${searchText}`)
+        history.push({
+            pathname: '/results',
+            state: { id: searchText }
+          })
     };
 
     //console.log(searchText);
