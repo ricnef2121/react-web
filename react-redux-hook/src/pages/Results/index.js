@@ -1,14 +1,15 @@
-import React, { useEffect } from 'react';
+import React, { useEffect,useState } from 'react';
 import { Container, CircularProgress } from '@material-ui/core';
 //import queryString from 'querystring';
 import { useDispatch, useSelector } from 'react-redux';
 import { searchSolicitudes } from '../../redux/actions/search'
 
 //selectors
-import { isResults } from '../../redux/selectors';
+import { isResults,isSearchLoading } from '../../redux/selectors';
 
 //componente
-import searchResult from '../../components/searchResult'
+import SearchResult from '../../components/searchResult'
+
 
 export default ({ location }) => {
 
@@ -16,10 +17,12 @@ export default ({ location }) => {
     const dispatch = useDispatch();
 
 
+    //let results = location.state.results;
+    let results = useSelector(state => isResults(state));
+   
+    const isLoading = useSelector(state => isSearchLoading(state));
 
-    //const results = useSelector(state =>{ isResults(state)});
-    const results = useSelector(state => isResults(state));
-    console.log(results, "cnoso")
+
     //guardamos el valor que recibimos como parametro de la url
     const ID = location.state;
     //definimos un objeto con una sola propiedad la cual cambiara su valor
@@ -28,50 +31,46 @@ export default ({ location }) => {
     //sumamos lo que contenga la constante ID con el objeto search
     search = { ...ID };
 
+    //bandera
+    const [isLooked,setIsLooked] = useState(false);
+
     useEffect(() => {
 
-        if (search.id && !results) {
+        if (search.id && !results || results && results.idResource !== search.id) {
             dispatch(searchSolicitudes(search))
+           
+        }
+        if (!search.id && !isLooked) {
+            setIsLooked(true)
+           dispatch(searchSolicitudes(search));
+            
             console.log("un")
         }
-        if (!search.id && !results) {
-            dispatch(searchSolicitudes(search))
-            console.log('no')
-        }
+        
 
-
-    });
+    }, []);
 
     const renderSearch = () => {
   
         if (results) {
-            console.log('map')
-            return searchResult();
-        //     return (<Card >
-
-        //         <Grid container>
-        //             <Grid item>
-        // <Typography> {results.idResource}</Typography>
-        //             </Grid>
-        //             <Grid item>
-        //                 <Typography>sad</Typography>
-        //                 <Typography>asd</Typography>
-        //                 <Typography>asd</Typography>
-        //                 <Button color="primary" variant="contained">Ver mas</Button>
-        //             </Grid>
-        //         </Grid>
-        //     </Card>);
+            let size = Object.keys(results).length;
+            console.log(Object.keys(results).length,'length')
+            if(size < 9){
+                  return  results.results.map((value,index) => <SearchResult key={index} {...value}/>)
+            }else{
+                return <SearchResult {...results}/>
+            }       
         }
-        else {
+        else if (isLoading){
             return <CircularProgress size={100} color="primary" />
         }
+        return <div />
     };
 
 
     return (
         <Container>
-            {renderSearch()}
-            
+            {renderSearch()}            
         </Container>
     );
 }

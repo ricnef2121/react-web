@@ -1,19 +1,23 @@
 import React from 'react';
 
 import { Card, Grid, Typography, Button } from '@material-ui/core'
+//estilos
+import style from './style';
 
-let searchResult = (props)=> {
+
+let SearchResult = ({ folio, request, emitter }) => {
+    const classes = style();
     return (
-        <Card>
-
+        <Card className={classes.cardContainer}>
             <Grid container>
                 <Grid item>
-                    <Typography> sss</Typography>
+                    <Typography className={classes.poster} >{folio}</Typography>
                 </Grid>
-                <Grid item>
-                    <Typography>sad</Typography>
-                    <Typography>asd</Typography>
-                    <Typography>asd</Typography>
+                <Grid item className={classes.request}>
+                    <Typography>{request}</Typography>
+                    <Typography>{emitter.cv}</Typography>
+                    <Typography>{emitter.name}</Typography>
+                    <Typography>{emitter.address}</Typography>
                     <Button color="primary" variant="contained">Ver mas</Button>
                 </Grid>
             </Grid>
@@ -21,4 +25,4 @@ let searchResult = (props)=> {
     );
 }
 
-export default searchResult;
+export default SearchResult;

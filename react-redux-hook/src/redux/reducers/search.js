@@ -9,7 +9,7 @@ export default function (state = initialState, action) {
             return { ...state,isLoading :true };
             
         case SEARCH_SOLICITUDES_ERROR:            
-            return { ...state,isLoading:false,searchResult:null };
+            return { ...state,isLoading:false,searchResult:action};
         case SEARCH_SOLICITUDES_COMPLETE:          
             return { ...state,isLoading:false,searchResult:action.results.data };
            

@@ -1,6 +1,5 @@
 import React ,{useState}from 'react';
 import {Container,Typography, Card,Grid,TextField,Button} from '@material-ui/core'
-//import { mergeClasses } from '@material-ui/styles';
 import styles from './style'
 import {MovieIcon} from '../../icons'
 
@@ -8,6 +7,8 @@ export default ({history}) => {
     
     const [searchText,setSearchText] = useState('');
     const classes = styles();
+    let results = "";
+
     const handleSearchTextChnge = event => {
         setSearchText(event.target.value);
     };
@@ -19,15 +20,14 @@ export default ({history}) => {
         //history.push(`/results?idSearch=${searchText}`)
         history.push({
             pathname: '/results',
-            state: { id: searchText }
+            state: { id: searchText,results }
           })
     };
-
-    //console.log(searchText);
 
     return (
         <Container className={classes.container}>
             <Card className={classes.cardContainer}>
+                
                 <Grid container className={classes.titleGridContainer}>
                     <Grid><Typography className={classes.title}>Bienvenido</Typography></Grid>
                     <Grid>
