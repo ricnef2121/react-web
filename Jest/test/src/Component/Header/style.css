@@ -1,0 +1,10 @@
+.Logo{
+    width: 200px;
+    height: 100px;
+    padding:10px;
+}
+.wrap{
+    background-color: gray;
+    width: auto;
+    height: 90px;
+}

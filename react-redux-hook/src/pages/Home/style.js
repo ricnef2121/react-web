@@ -23,7 +23,7 @@ export default makeStyles({
         fontSize:'4rem'
     },
     titleGridContainer:{
-        ...centeredStyleObj
+        ...centeredStyleObj 
     },
     textFieldSearch:{
         width: '90%'
