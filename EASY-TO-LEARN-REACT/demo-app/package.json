@@ -12,9 +12,14 @@
     "react-scripts": "3.2.0"
   },
   "scripts": {
-        "start-server": "npm start",
-        "test": "cypress open",
-        "ci": "start-server-and-test start http://localhost:8080 test"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "jest": "jest",
+    "test:e2e": "cypress open",
+    "cy:run": "cypress run",
+    "test2": "start-server-and-test start http://localhost:3000 test:e2e"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -33,6 +38,7 @@
   },
   "devDependencies": {
     "cypress": "^3.8.3",
-    "start-server-and-test": "^1.10.7"
+    "start-server-and-test": "^1.10.7",
+    "wait-on": "^4.0.0"
   }
 }
